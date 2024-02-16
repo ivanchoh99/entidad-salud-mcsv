@@ -14,7 +14,8 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements IUsuarioService {
 
     @Autowired
-    private IUsuarioRepo usuarioRepo;
+    private  IUsuarioRepo usuarioRepo;
+
 
     @Override
     @Transactional(readOnly = true)
@@ -39,4 +40,20 @@ public class UsuarioServiceImpl implements IUsuarioService {
     public void eliminar(String identificacion) {
         usuarioRepo.deleteByIdentificacion(identificacion);
     }
+
+    @Override
+    public boolean existeCorreo(String email) {
+        return usuarioRepo.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existeIdentificacion(String identificacion) {
+        return usuarioRepo.existsByIdentificacion(identificacion);
+    }
+
+    @Override
+    public Optional<Usuario> usuarioPorEmail(String email) {
+        return usuarioRepo.findByEmail(email);
+    }
+
 }

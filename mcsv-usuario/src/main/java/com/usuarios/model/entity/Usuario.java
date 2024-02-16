@@ -4,10 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @Data
@@ -26,7 +27,9 @@ public class Usuario {
     @Email
     @NotEmpty
     private String email;
-    @NotEmpty
+    @NotNull
+    @Past
+    @DateTimeFormat
     private Date fechaNacimiento;
     @NotEmpty
     private String contrasena;
