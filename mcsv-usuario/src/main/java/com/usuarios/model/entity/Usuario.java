@@ -4,11 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Calendar;
 import java.util.Date;
 
 @Data
@@ -17,21 +18,17 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    protected Long id;
     @NotEmpty
-    private String identificacion;
+    protected String identificacion;
     @NotEmpty
-    private String nombre;
+    protected String nombre;
     @NotEmpty
-    private String apellido;
+    protected String apellido;
     @Email
     @NotEmpty
-    private String email;
+    protected String email;
     @NotNull
-    @Past
     @DateTimeFormat
-    private Date fechaNacimiento;
-    @NotEmpty
-    private String contrasena;
-
+    protected Date fechaNacimiento;
 }

@@ -1,5 +1,6 @@
 package com.citas.service.impl;
 
+import com.citas.model.Usuario;
 import com.citas.model.entity.Cita;
 import com.citas.repository.ICitasRepository;
 import com.citas.service.ICitaService;
@@ -15,9 +16,10 @@ public class CitaServiceImpl implements ICitaService {
 
     @Autowired
     private ICitasRepository citasRepo;
+
     @Override
     @Transactional(readOnly = true)
-    public List<Cita> citas() {
+    public List<Cita> listar() {
         return citasRepo.findAll();
     }
 
@@ -37,5 +39,15 @@ public class CitaServiceImpl implements ICitaService {
     @Transactional
     public void eliminar(Long id) {
         citasRepo.deleteById(id);
+    }
+
+    @Override
+    public void asignarPaciente(Usuario paciente) {
+
+    }
+
+    @Override
+    public void asignarMedico(Usuario medico) {
+
     }
 }

@@ -2,7 +2,7 @@ package com.citas.controller;
 
 import com.citas.model.entity.Cita;
 import com.citas.service.ICitaService;
-import com.citas.service.impl.CitaServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,15 +16,13 @@ import java.util.Optional;
 @RestController
 public class CitaController {
 
-    private final ICitaService citaService;
+    @Autowired
+    private ICitaService citaService;
 
-    private CitaController() {
-        this.citaService = new CitaServiceImpl();
-    }
 
     @GetMapping("/")
     public List<Cita> citas() {
-        return citaService.citas();
+        return citaService.listar();
     }
 
     @GetMapping("/{id}")
@@ -53,7 +51,10 @@ public class CitaController {
         if (c.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.status(201).body(citaService.guardar(cita));
+
+        cita.setId(c.get().getId());
+
+        return ResponseEntity.ok(citaService.guardar(cita));
     }
 
     @DeleteMapping("/{id}")
