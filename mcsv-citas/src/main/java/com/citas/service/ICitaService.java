@@ -15,7 +15,6 @@ public interface ICitaService {
 
     void eliminar(Long id);
 
-    Optional<Cita> asignarMedico(Long citaId, Long UsuarioId);
+    Optional<Cita> asignarUsuario(Long citaId, Long UsuarioId);
 
-    Optional<Cita> asignarPaciente(Long citaId, Long UsuarioId);
 }

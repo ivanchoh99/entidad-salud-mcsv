@@ -55,16 +55,10 @@ public class CitaController {
         return ResponseEntity.ok(service.guardar(cita));
     }
 
-    @PutMapping("asigMedico/{citaId}")
-    public ResponseEntity<?> asignarMedico(@PathVariable Long citaId, @RequestParam Long medicoId) {
-        if (citaId <= 0 || medicoId == null || medicoId <= 0) return ResponseEntity.badRequest().build();
-        return ResponseEntity.ok(service.asignarMedico(citaId, medicoId));
-    }
-
-    @PutMapping("asigPaciente/{citaId}")
-    public ResponseEntity<?> asignarPaciente(@PathVariable Long citaId, @RequestParam Long pacienteId) {
-        if (citaId <= 0 || pacienteId == null || pacienteId <= 0) return ResponseEntity.badRequest().build();
-        return ResponseEntity.ok(service.asignarPaciente(citaId, pacienteId));
+    @PutMapping("asignarUsuario/{citaId}")
+    public ResponseEntity<?> asignarUsuario(@PathVariable Long citaId, @RequestParam Long usuarioId) {
+        if (citaId <= 0 || usuarioId == null || usuarioId <= 0) return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(service.asignarUsuario(citaId, usuarioId));
     }
 
     @DeleteMapping("/{id}")

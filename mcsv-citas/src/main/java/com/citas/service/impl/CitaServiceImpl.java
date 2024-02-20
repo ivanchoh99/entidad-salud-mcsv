@@ -78,39 +78,25 @@ public class CitaServiceImpl implements ICitaService {
         citasRepo.deleteById(id);
     }
 
-    @Override
-    @Transactional
-    public Optional<Cita> asignarMedico(Long citaId, Long usuarioId) {
-
-        Optional<Cita> oCita = detalle(citaId);
-        if (oCita.isEmpty()) return Optional.empty();
-
-        Usuario medico = usuarioMSVC.detalle(usuarioId);
-        oCita.ifPresent(cita -> {
-            cita.setPacienteId(medico.getId());
-            cita.setPacienteUsuario(medico);
-            Cita citaGuardada = citasRepo.save(cita);
-            log.info("se asigno el medico -> {} {} a la cita -> {}", medico.getNombre(), medico.getApellido(), citaGuardada.getId());
-        });
-
-        return oCita;
-    }
 
     @Override
     @Transactional
-    public Optional<Cita> asignarPaciente(Long citaId, Long usuarioId) {
+    public Optional<Cita> asignarUsuario(Long citaId, Long usuarioId) {
 
-        Optional<Cita> oCita = detalle(citaId);
+        Optional<Cita> oCita = citasRepo.findById(citaId);
         if (oCita.isEmpty()) return Optional.empty();
 
-        Usuario paciente = usuarioMSVC.detalle(usuarioId);
+        Usuario usuario = usuarioMSVC.detalle(usuarioId);
         oCita.ifPresent(cita -> {
-            cita.setPacienteId(paciente.getId());
-            cita.setPacienteUsuario(paciente);
-            Cita citaGuardada = citasRepo.save(cita);
-            log.info("se asigno el medico -> {} {} a la cita -> {}", paciente.getNombre(), paciente.getApellido(), citaGuardada.getId());
+            if (usuario.getTipoUsuario().equals("medico")) {
+                cita.setMedicoId(usuario.getId());
+            } else {
+                cita.setPacienteId(usuario.getId());
+            }
         });
+        citasRepo.save(oCita.get());
+        log.info("Se a asignado a {} {} {} a la cita {}", usuario.getTipoUsuario(), usuario.getNombre(), usuario.getApellido(), oCita.get().getId());
 
-        return oCita;
+        return detalle(citaId);
     }
 }
