@@ -1,9 +1,6 @@
 package com.usuarios.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -18,17 +15,25 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+    private Long id;
     @NotEmpty
-    protected String identificacion;
+    @Column(unique = true)
+    private String identificacion;
     @NotEmpty
-    protected String nombre;
+    private String nombre;
     @NotEmpty
-    protected String apellido;
+    private String apellido;
     @Email
     @NotEmpty
-    protected String email;
+    @Column(unique = true)
+    private String email;
+    @NotNull
+    private Long celular;
     @NotNull
     @DateTimeFormat
-    protected Date fechaNacimiento;
+    private Date fechaNacimiento;
+    @NotNull
+    private Character sexo;
+    @NotEmpty
+    private String tipoUsuario;
 }

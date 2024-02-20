@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/citas.main.iml" filepath="$PROJECT_DIR$/.idea/modules/citas.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/entidad-salud-mcsv.iml" filepath="$PROJECT_DIR$/.idea/entidad-salud-mcsv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/usuarios.main.iml" filepath="$PROJECT_DIR$/.idea/modules/usuarios.main.iml" />
     </modules>
   </component>
 </project>

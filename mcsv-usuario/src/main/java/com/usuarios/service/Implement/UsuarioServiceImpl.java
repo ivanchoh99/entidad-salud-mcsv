@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements IUsuarioService {
 
     @Autowired
-    private  IUsuarioRepo usuarioRepo;
+    private IUsuarioRepo usuarioRepo;
 
 
     @Override
@@ -25,8 +25,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Usuario> buscar(String identificacion) {
-        return usuarioRepo.findByIdentificacion(identificacion);
+    public Optional<Usuario> buscarId(Long id) {
+        return usuarioRepo.findById(id);
     }
 
     @Override
@@ -37,23 +37,35 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     @Transactional
-    public void eliminar(String identificacion) {
-        usuarioRepo.deleteByIdentificacion(identificacion);
+    public void eliminar(Long id) {
+        usuarioRepo.deleteById(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean existeCorreo(String email) {
         return usuarioRepo.existsByEmail(email);
     }
 
     @Override
-    public boolean existeIdentificacion(String identificacion) {
+    @Transactional(readOnly = true)
+    public boolean existeId(Long id) {
+        return usuarioRepo.existsById(id);
+    }
+
+    @Override
+    @Transactional
+    public boolean existeidentificacion(String identificacion) {
         return usuarioRepo.existsByIdentificacion(identificacion);
     }
 
     @Override
-    public Optional<Usuario> usuarioPorEmail(String email) {
-        return usuarioRepo.findByEmail(email);
+    public List<Usuario> listarMedicos() {
+        return usuarioRepo.findAllByTipoUsuarioEquals("medico");
     }
 
+    @Override
+    public List<Usuario> listarPacientes() {
+        return usuarioRepo.findAllByTipoUsuarioEquals("paciente");
+    }
 }

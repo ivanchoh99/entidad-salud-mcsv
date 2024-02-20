@@ -22,11 +22,21 @@ public class UsuarioController {
         return service.listar();
     }
 
-    @GetMapping("/{identifiacion}")
-    public ResponseEntity<?> detalle(@Valid @PathVariable String identifiacion) {
+    @GetMapping("/medicos")
+    public List<Usuario> medicos() {
+        return service.listarMedicos();
+    }
+
+    @GetMapping("/pacientes")
+    public List<Usuario> pacientes() {
+        return service.listarPacientes();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> detalle(@Valid @PathVariable Long id) {
 
 
-        Optional<Usuario> usuario = service.buscar(identifiacion);
+        Optional<Usuario> usuario = service.buscarId(id);
         if (usuario.isEmpty()) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(usuario);
@@ -37,7 +47,7 @@ public class UsuarioController {
 
         if (result.hasErrors()) return validarErrores(result);
 
-        if (service.existeIdentificacion(usuario.getIdentificacion())) {
+        if (service.existeidentificacion(usuario.getIdentificacion())) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("mesaje", "Esta identificacion ya existe"));
         }
 
@@ -45,19 +55,18 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(Collections.singletonMap("mensaje", "Este correo ya esta registrado"));
         }
 
-
         return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(usuario));
     }
 
-    @PutMapping("/{identifiacion}")
-    public ResponseEntity<?> actualizar(@PathVariable String identifiacion, @Valid @RequestBody Usuario usuario, BindingResult result) {
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuario, BindingResult result) {
 
 
         if (result.hasErrors()) {
             return validarErrores(result);
         }
 
-        Optional<Usuario> optionalUsuario = service.buscar(identifiacion);
+        Optional<Usuario> optionalUsuario = service.buscarId(id);
 
         if (optionalUsuario.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -69,7 +78,7 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(Collections.singletonMap("mensaje", "Este correo ya esta registrado"));
         }
 
-        if (service.existeIdentificacion(usuario.getIdentificacion()) && !usuario.getIdentificacion().equalsIgnoreCase(optionalUsuario.get().getIdentificacion())) {
+        if (service.existeId(usuario.getId()) && !usuario.getId().equals(optionalUsuario.get().getId())) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("mesaje", "Esta identificacion ya existe"));
         }
 
@@ -79,14 +88,14 @@ public class UsuarioController {
     }
 
 
-    @DeleteMapping("/{identifiacion}")
-    public ResponseEntity<?> delete(@PathVariable String identifiacion) {
-        Optional<Usuario> u = service.buscar(identifiacion);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        Optional<Usuario> u = service.buscarId(id);
         if (u.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        service.eliminar(identifiacion);
+        service.eliminar(id);
         return ResponseEntity.noContent().build();
     }
 

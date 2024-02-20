@@ -12,7 +12,8 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String email;
+    private Long celular;
     private Date fechaNacimiento;
-
-
+    private Character sexo;
+    private String tipoUsuario;
 }

@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "usuarios-mcsv", url = "localhost:8002")
 public interface UsuarioClientREST {
 
-    @GetMapping("/{identifiacion}")
-    Usuario detalle(@PathVariable String identifiacion);
+    @GetMapping("/{id}")
+    Usuario detalle(@PathVariable Long id);
 }

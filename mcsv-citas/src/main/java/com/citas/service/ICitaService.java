@@ -1,6 +1,5 @@
 package com.citas.service;
 
-import com.citas.model.Usuario;
 import com.citas.model.entity.Cita;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public interface ICitaService {
 
     void eliminar(Long id);
 
-    void asignarPaciente(Usuario paciente);
+    Optional<Cita> asignarMedico(Long citaId, Long UsuarioId);
 
-    void asignarMedico(Usuario medico);
+    Optional<Cita> asignarPaciente(Long citaId, Long UsuarioId);
 }

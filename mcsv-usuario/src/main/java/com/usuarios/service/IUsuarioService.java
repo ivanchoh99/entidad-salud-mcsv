@@ -10,15 +10,19 @@ public interface IUsuarioService {
 
     List<Usuario> listar();
 
-    Optional<Usuario> buscar(String identificacion);
+    Optional<Usuario> buscarId(Long id);
 
     Usuario guardar(Usuario usuario);
 
-    void eliminar(String identificacion);
+    void eliminar(Long id);
 
     boolean existeCorreo(String email);
 
-    boolean existeIdentificacion(String identificacion);
+    boolean existeId(Long id);
 
-    Optional<Usuario> usuarioPorEmail(String email);
+    boolean existeidentificacion(String identificacion);
+
+    List<Usuario> listarMedicos();
+
+    List<Usuario> listarPacientes();
 }

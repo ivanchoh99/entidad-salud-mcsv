@@ -4,7 +4,6 @@ import com.citas.model.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,21 +16,16 @@ public class Cita {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotEmpty
-    private TipoCita tipoCita;
-
+    private String tipoCita;
     @NotEmpty
-    private EstadoCita estadoCita;
-
+    private String estadoCita;
     @NotNull
-    @PastOrPresent
     @DateTimeFormat
     private Date fechaHora;
 
-    @NotEmpty
+
     private Long medicoId;//* usuariosID
-    @NotEmpty
     private Long pacienteId;//* usuariosID
 
     //TODO No mapeado
