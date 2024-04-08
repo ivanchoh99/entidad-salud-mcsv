@@ -36,3 +36,16 @@ out/
 
 ### VS Code ###
 .vscode/
+
+gradle
+gradlew
+gradlew.bat
+
+/mcsv-citas/gradle
+/mcsv-citas/gradlew.bat
+/mcsv-citas/gradlew
+
+/mcsv-usuario/gradle
+/mcsv-usuario/gradlew.bat
+/mcsv-usuario/gradlew
+
