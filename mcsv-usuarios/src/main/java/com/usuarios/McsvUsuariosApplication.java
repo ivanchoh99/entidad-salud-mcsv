@@ -9,10 +9,10 @@ import java.util.Date;
 
 @EnableFeignClients
 @SpringBootApplication
-public class McsvUsuarioApplication {
+public class McsvUsuariosApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(McsvUsuarioApplication.class, args);
+        SpringApplication.run(McsvUsuariosApplication.class, args);
     }
 
 }
