@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/citas.iml" filepath="$PROJECT_DIR$/.idea/modules/citas.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/entidad-salud-mcsv.iml" filepath="$PROJECT_DIR$/.idea/modules/entidad-salud-mcsv.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mcsv-citas/entidad-salud-mcsv.mcsv-citas.iml" filepath="$PROJECT_DIR$/.idea/modules/mcsv-citas/entidad-salud-mcsv.mcsv-citas.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mcsv-usuario/entidad-salud-mcsv.mcsv-usuario.iml" filepath="$PROJECT_DIR$/.idea/modules/mcsv-usuario/entidad-salud-mcsv.mcsv-usuario.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/usuarios.iml" filepath="$PROJECT_DIR$/.idea/modules/usuarios.iml" />
     </modules>
   </component>

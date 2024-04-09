@@ -8,8 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/mcsv-citas" />
-            <option value="$PROJECT_DIR$/mcsv-usuario" />
+            <option value="$PROJECT_DIR$/citas" />
+            <option value="$PROJECT_DIR$/usuarios" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -22,11 +22,10 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/mcsv-usuario" />
-        <option name="gradleJvm" value="corretto-17" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/mcsv-usuarios" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/mcsv-usuario" />
+            <option value="$PROJECT_DIR$/mcsv-usuarios" />
           </set>
         </option>
       </GradleProjectSettings>

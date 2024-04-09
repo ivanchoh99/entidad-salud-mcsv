@@ -1,2 +1,2 @@
 rootProject.name = 'entidad-salud-mcsv'
-include('mcsv-citas', 'mcsv-usuario')
+include('usuarios', 'citas')
