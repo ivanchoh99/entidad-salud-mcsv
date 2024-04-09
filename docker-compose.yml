@@ -1,0 +1,61 @@
+version: "3.9"
+services:
+  mysql:
+    image: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: citas
+    volumes:
+      - data-mysql:/var/lib/mysql
+    restart: always
+    networks:
+      - entidad-salud
+
+  postgres:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: usuarios
+    volumes:
+      - data-postgres:/var/lib/postgres/data
+    restart: always
+    networks:
+      - entidad-salud
+
+  mcsv-usuarios:
+    image: usuarios:latest
+    ports:
+      - "8001:8001"
+    env_file: ./mcsv-usuarios/.env
+    networks:
+      - entidad-salud
+    depends_on:
+      - mysql
+    restart: always
+
+  mcsv-citas:
+    image: citas:latest
+    ports:
+      - "8002:8002"
+    env_file: ./mcsv-citas/.env
+    networks:
+      - entidad-salud
+    depends_on:
+      - postgres
+    restart: always
+
+volumes:
+  data-mysql:
+  data-postgres:
+
+networks:
+  entidad-salud:
+
+
+
+
+
